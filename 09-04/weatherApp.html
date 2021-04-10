@@ -10,17 +10,14 @@
     <body >
         <center>
         <form onsubmit="return false">
-            <label>City Name</label><br>
-            <input type="text" id="cityName" name="cityName" placeholder="City Name"/> <br><br>
-            <input type="submit"  onclick="findWeather()" value="Fetch Weather Forecast"> <br><br>
-            <input type="submit"  onclick="findCurrentWeather()" value="Fetch Current Weather Details">
+            <h3>City Name</h3><br>
+            <input type="text" class="form-control" style="width:25%;" id="cityName" name="cityName" placeholder="Enter City Name"/> <br>
+            <input type="submit"  onclick="findWeather()" value="Fetch Weather Details Forecast" class="btn btn-success"> <br><br>
         </form>
         <h3 id="current"></h3>
         <h3 id="heading"></h3>
-        <div class="table-responsive" >
-            <table id="tempTable">
-
-            </table>
+        <div class="table-responsive" id="tempTable">
+            
         </div>
     </center>
     </body>
