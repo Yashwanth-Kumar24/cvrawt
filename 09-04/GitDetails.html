@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <title>
+            Git Repos Details Api
+        </title>
+        <script src="gitapi.js"></script>
+    </head>
+    <body >
+        <center>
+        <form onsubmit="return false">
+            <label>User Name</label><br>
+            <input type="text" id="userName" name="userName" placeholder="User Name"/> <br><br>
+            <input type="submit"  onclick="findDetails()" value="Fetch Repos Details"> <br><br>
+            
+        </form>
+        <h3 id="current"></h3>
+        <h3 id="heading"></h3>
+        <div class="table-responsive" >
+            <table id="tempTable">
+
+            </table>
+        </div>
+    </center>
+    </body>
+</html>
