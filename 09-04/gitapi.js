@@ -5,7 +5,7 @@ function findDetails(){
 
     var uname=document.getElementById("userName").value;
 
-    let url='http://api.github.com/users/'+uname+'/repos'
+    let url='https://api.github.com/users/'+uname+'/repos'
         
     //console.log(url)
 
@@ -72,6 +72,7 @@ function findDetails(){
                 let btn=document.createElement("button");
                 btn.innerHTML="Open"
                 btn.className="btn btn-primary"
+
                 btn.addEventListener("click",function(){
                     location.href = dis.html_url;
                 })
