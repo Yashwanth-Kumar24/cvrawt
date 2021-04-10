@@ -3,11 +3,11 @@ function findWeather(){
     var api="f825702b1fdb79c62f5c16e17cf0ee37"
     let city=document.getElementById("cityName").value;
     //console.log(city)
-    
+     
         let url=`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${api}`
         let url2=`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${api}`
         
-       // console.log(url)
+        console.log(url2)
 
         
 
@@ -28,21 +28,20 @@ function findWeather(){
             // console.log(res)
             // console.log(res2.cod)
 
+            //reset all values
+            document.getElementById("current").innerHTML=""
+            document.getElementById("heading").innerHTML=""
+            document.getElementById("tempTable").innerHTML=""
             //Current Weather
             if(res2.cod==200)
             document.getElementById("current").innerHTML="Current weather of "+city+" is "+res2.main.temp+" C";
             else
-            document.getElementById("current").innerHTML=res2.message
+            document.getElementById("current").innerHTML="Please enter proper city name"
 
             //Forecast
-            document.getElementById("tempTable").innerHTML=""
-       
-            
            // console.log(res)
             if(res.cod==200)
             document.getElementById("heading").innerHTML="Weather forecast of "+city;
-            else
-            document.getElementById("heading").innerHTML=res.message
 
             let table=document.createElement("table");
             table.cellPadding="15"
@@ -52,16 +51,19 @@ function findWeather(){
             table.className="table-striped table-hover"
             
             let row=table.insertRow(-1)
-
+            row.style.color="blue"
+            row.align="center"
             let date=row.insertCell(-1)
             let time=row.insertCell(-1)
             let temp=row.insertCell(-1)
             let temp2=row.insertCell(-1)
             let temp3=row.insertCell(-1)
-            
+            temp.style.padding="10px"
+            temp2.style.padding="10px"
+            temp3.style.padding="10px"
 
             date.innerHTML="Date";
-            time.innerHTML="Date";
+            time.innerHTML="Time";
             temp.innerHTML="Temperature";
             temp2.innerHTML="Min Temperature";
             temp3.innerHTML="Max Temperature";
@@ -70,13 +72,15 @@ function findWeather(){
                 let row2=table.insertRow(-1)
                 
                 row2.align="center"
-
+                row2.style.color="orange"
                 let dateDis=row2.insertCell(-1);
                 let timeDis=row2.insertCell(-1);
                 let tempDis=row2.insertCell(-1);
                 let tempDis2=row2.insertCell(-1);
                 let tempDis3=row2.insertCell(-1);
-
+                dateDis.style.padding="10px";
+                timeDis.style.padding="10px";
+                
                 var s=dis.dt_txt.split(" ");
                 
                 dateDis.innerHTML=s[0];
@@ -94,4 +98,3 @@ function findWeather(){
   
 
 }
-
