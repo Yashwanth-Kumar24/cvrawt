@@ -4,8 +4,8 @@ function findWeather(){
     let city=document.getElementById("cityName").value;
     //console.log(city)
      
-        let url=`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${api}`
-        let url2=`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${api}`
+        let url=`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${api}`
+        let url2=`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${api}`
         
         console.log(url2)
 
