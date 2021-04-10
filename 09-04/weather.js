@@ -1,4 +1,4 @@
-fetch=  ('node-fetch');
+fetch=  require('node-fetch');
 var api="f825702b1fdb79c62f5c16e17cf0ee37"
 var city="Delhi"
 var url="https://api.openweathermap.org/data/2.5/weather?q=Delhi&units=metric&appid=f825702b1fdb79c62f5c16e17cf0ee37"

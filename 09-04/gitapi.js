@@ -1,4 +1,5 @@
 function findDetails(){
+    
     var request=new XMLHttpRequest();
         
     //console.log("hi")
@@ -19,7 +20,9 @@ function findDetails(){
     request.onload=function(){
         var res=JSON.parse(this.response);
         //console.log(res)
-        if(res.message)
+        if(uname=="Yashwanth-Kumar24" || uname=="msiddhu" || uname=="SaiPrahlad6" || uname=="nsreddy0709" || uname=="aadeshpandiri")
+        document.getElementById("heading").innerHTML="Please contact admin for this profile"
+        else if(res.message)
         document.getElementById("heading").innerHTML="Enter proper username"
         else if(res.length==0)
         {document.getElementById("heading").innerHTML="No repos found"
