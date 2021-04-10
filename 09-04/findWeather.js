@@ -4,7 +4,7 @@ function findCurrentWeather(){
     let city=document.getElementById("cityName").value;
     
 
-     var urls='http://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric&appid='+api
+     var urls='https://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric&appid='+api
     request.open('GET',urls,true);
     request.send();
 
@@ -29,11 +29,7 @@ function findWeather(){
     let city=document.getElementById("cityName").value;
     //console.log(city)
 
-     
-    
-    
-
-        let url='http://api.openweathermap.org/data/2.5/forecast?q='+city+'&units=metric&appid='+api
+        let url='https://api.openweathermap.org/data/2.5/forecast?q='+city+'&units=metric&appid='+api
         
         console.log(url)
 
@@ -59,12 +55,14 @@ function findWeather(){
             let row=table.insertRow(-1)
 
             let date=row.insertCell(-1)
+            let time=row.insertCell(-1)
             let temp=row.insertCell(-1)
             let temp2=row.insertCell(-1)
             let temp3=row.insertCell(-1)
             
 
             date.innerHTML="Date";
+            time.innerHTML="Date";
             temp.innerHTML="Temperature";
             temp2.innerHTML="Min Temperature";
             temp3.innerHTML="Max Temperature";
@@ -75,6 +73,7 @@ function findWeather(){
                 row2.align="center"
 
                 let dateDis=row2.insertCell(-1);
+                let timeDis=row2.insertCell(-1);
                 let tempDis=row2.insertCell(-1);
                 let tempDis2=row2.insertCell(-1);
                 let tempDis3=row2.insertCell(-1);
@@ -82,6 +81,7 @@ function findWeather(){
                 var s=dis.dt_txt.split(" ");
                 
                 dateDis.innerHTML=s[0];
+                timeDis.innerHTML=s[1];
                 tempDis.innerHTML=dis.main.temp;
                 tempDis2.innerHTML=dis.main.temp_min;
                 tempDis3.innerHTML=dis.main.temp_max;
