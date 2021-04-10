@@ -28,6 +28,11 @@ function findWeather(){
             // console.log(res)
             // console.log(res2.cod)
 
+            //reset all values
+            document.getElementById("current").innerHTML=""
+            document.getElementById("heading").innerHTML=""
+            document.getElementById("tempTable").innerHTML=""
+            
             //Current Weather
             if(res2.cod==200)
             document.getElementById("current").innerHTML="Current weather of "+city+" is "+res2.main.temp+" C";
@@ -35,13 +40,10 @@ function findWeather(){
             document.getElementById("current").innerHTML="Please enter proper city name"
 
             //Forecast
-            document.getElementById("tempTable").innerHTML=""
-       
-            
            // console.log(res)
             if(res.cod==200)
             document.getElementById("heading").innerHTML="Weather forecast of "+city;
-            
+
 
             let table=document.createElement("table");
             table.cellPadding="15"
