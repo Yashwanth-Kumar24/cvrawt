@@ -32,7 +32,7 @@ function findWeather(){
             if(res2.cod==200)
             document.getElementById("current").innerHTML="Current weather of "+city+" is "+res2.main.temp+" C";
             else
-            document.getElementById("current").innerHTML=res2.message
+            document.getElementById("current").innerHTML="Please enter proper city name"
 
             //Forecast
             document.getElementById("tempTable").innerHTML=""
@@ -41,8 +41,7 @@ function findWeather(){
            // console.log(res)
             if(res.cod==200)
             document.getElementById("heading").innerHTML="Weather forecast of "+city;
-            else
-            document.getElementById("heading").innerHTML=res.message
+            
 
             let table=document.createElement("table");
             table.cellPadding="15"
