@@ -61,7 +61,7 @@ function findWeather(){
             
 
             date.innerHTML="Date";
-            time.innerHTML="Date";
+            time.innerHTML="Time";
             temp.innerHTML="Temperature";
             temp2.innerHTML="Min Temperature";
             temp3.innerHTML="Max Temperature";
