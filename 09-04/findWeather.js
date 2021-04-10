@@ -58,6 +58,7 @@ function findWeather(){
             let temp=row.insertCell(-1)
             let temp2=row.insertCell(-1)
             let temp3=row.insertCell(-1)
+            let icon=row.insertCell(-1);
             temp.style.padding="10px"
             temp2.style.padding="10px"
             temp3.style.padding="10px"
@@ -67,6 +68,7 @@ function findWeather(){
             temp.innerHTML="Temperature";
             temp2.innerHTML="Min Temperature";
             temp3.innerHTML="Max Temperature";
+            icon.innerHTML="Status";
             
             res.list.forEach((dis)=>{
                 let row2=table.insertRow(-1)
@@ -78,16 +80,22 @@ function findWeather(){
                 let tempDis=row2.insertCell(-1);
                 let tempDis2=row2.insertCell(-1);
                 let tempDis3=row2.insertCell(-1);
+                let icon2=row2.insertCell(-1);
                 dateDis.style.padding="10px";
                 timeDis.style.padding="10px";
                 
+                let imgs=document.createElement("img");
+                imgs.src="http://openweathermap.org/img/wn/"+dis.weather[0].icon+"@2x.png"
+                icon2.style.padding="10px"
                 var s=dis.dt_txt.split(" ");
-                
+                icon2.style.color="red"
                 dateDis.innerHTML=s[0];
                 timeDis.innerHTML=s[1];
                 tempDis.innerHTML=dis.main.temp;
                 tempDis2.innerHTML=dis.main.temp_min;
                 tempDis3.innerHTML=dis.main.temp_max;
+                icon2.append(imgs)
+                icon2.innerHTML+="<br>"+dis.weather[0].description;
                             
             });
             
