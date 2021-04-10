@@ -1,0 +1,27 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <title>
+            COVID API
+        </title>
+        <script src="covid.js"></script>
+    </head>
+    <body >
+        <center>
+        <form onsubmit="return false">
+            <h3>Country Name</h3><br>
+            
+            <input type="text" id="countryName" class="form-control" style="width:25%;" placeholder="Country Name"/> <br><br>
+            
+            <input type="submit"  onclick="findCases()" value="Fetch Cases Details" class="btn btn-success"> <br><br>
+        </form>
+        <h3 id="current" style="color: blueviolet;"></h3>
+        <h3 id="heading" style="color:crimson;"></h3>
+        <div class="table-responsive" id="covidTable">
+            
+        </div>
+    </center>
+    </body>
+</html>
