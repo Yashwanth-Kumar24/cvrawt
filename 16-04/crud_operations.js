@@ -143,7 +143,7 @@ function loadUsers(){
     }
     else{
         
-                document.getElementById("studentList").innerHTML="No students are registered."
+                document.getElementById("studentList").innerHTML="No students registered."
                 document.getElementById("studentList").style.color="red";
                 document.getElementById("studentList").style.fontSize="24px";
                 k=1;
