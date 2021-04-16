@@ -25,10 +25,10 @@ function addDetais(){
         count++;
         k=snap.val().id
         }
-        console.log(count+"--")
+        
     })
 
-    console.log(k+" "+count)
+    
 
     let ids=100
     if(count==100)
@@ -38,7 +38,7 @@ function addDetais(){
     
     var uname=document.getElementById("name").value
     var email=document.getElementById("email").value
-    console.log(uname)
+    
     if(uname=="" || email=="")
         alert("Please enter values")
     else{
@@ -57,14 +57,10 @@ function addDetais(){
 function loadUsers(){
     
     document.getElementById("studentList").innerHTML=""
-
-    
-    // if(count==100){
-    //     document.getElementById("studentList").innerHTML="No students are registered."
-    //     document.getElementById("studentList").style.color="red";
-    //     document.getElementById("studentList").style.fontSize="24px";
-    // }
-    // else{
+    let k=0;
+    ref.get().then((snapshot) => {
+        if (snapshot.exists()) {
+          
     let table=document.createElement("table");
     
     table.align="center";
@@ -138,17 +134,20 @@ function loadUsers(){
 
 
     })
-    // if(count==0)
-    //     {
-    //         document.getElementById("studentList").innerHTML="No students are registered."
-    //     document.getElementById("studentList").style.color="red";
-    //     document.getElementById("studentList").style.fontSize="24px";
-    //     }
         
     userlist=document.getElementById("studentList")
     userlist.append(table)
 
-
+    }
+    else{
+        
+                document.getElementById("studentList").innerHTML="No students are registered."
+                document.getElementById("studentList").style.color="red";
+                document.getElementById("studentList").style.fontSize="24px";
+                k=1;
+          
+        }});
+    
 }
 
 function editStudent(){
@@ -167,7 +166,7 @@ function editStudent(){
 function deleteStudent(delId) {
     if (confirm('Are you sure to delete this record ?')) {
          
-         console.log(delId);
+         
          ref.child(delId).remove();
          
          loadUsers();
