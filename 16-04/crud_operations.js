@@ -41,6 +41,8 @@ function addDetais(){
     
     if(uname=="" || email=="")
         alert("Please enter values")
+    else if(!(email.includes("@gmail.com") || email.includes("@cvr.ac.in")) )
+        alert("Only google and cvr domains are allowed. Please try again")
     else{
     ref.child(ids).set({
         id:ids,
