@@ -18,13 +18,16 @@ function addDetais(){
 
     let count=100;
     let k;
+
     ref.on('child_added',(snap)=>{
         
         if(snap.exists()){
         count++;
         k=snap.val().id
         }
+        console.log(count+"--")
     })
+
     console.log(k+" "+count)
 
     let ids=100
@@ -44,6 +47,8 @@ function addDetais(){
         name:uname,
         email:email
     });
+    document.getElementById("email").value="";
+    document.getElementById("name").value="";
     loadUsers();
     }
 }
@@ -53,22 +58,13 @@ function loadUsers(){
     
     document.getElementById("studentList").innerHTML=""
 
-    let count=0
     
-    ref.on('child_added',(snap)=>{
-        
-        
-        count++;
-        
-    })
-
-    console.log(count)
-    if(count==0){
-        document.getElementById("studentList").innerHTML="No students are registered."
-        document.getElementById("studentList").style.color="red";
-        document.getElementById("studentList").style.fontSize="24px";
-    }
-    else{
+    // if(count==100){
+    //     document.getElementById("studentList").innerHTML="No students are registered."
+    //     document.getElementById("studentList").style.color="red";
+    //     document.getElementById("studentList").style.fontSize="24px";
+    // }
+    // else{
     let table=document.createElement("table");
     
     table.align="center";
@@ -92,10 +88,10 @@ function loadUsers(){
    email.innerHTML="Mail id";
    operations.innerHTML="Operations";
    
-
+    
    ref.on('child_added',(snap)=>{
     
-    console.log(snap.val())
+    
     row2=table.insertRow(-1)
     sid2=row2.insertCell(-1)
     sname2=row2.insertCell(-1)
@@ -142,10 +138,17 @@ function loadUsers(){
 
 
     })
-
+    // if(count==0)
+    //     {
+    //         document.getElementById("studentList").innerHTML="No students are registered."
+    //     document.getElementById("studentList").style.color="red";
+    //     document.getElementById("studentList").style.fontSize="24px";
+    //     }
+        
     userlist=document.getElementById("studentList")
     userlist.append(table)
-    }
+
+
 }
 
 function editStudent(){
