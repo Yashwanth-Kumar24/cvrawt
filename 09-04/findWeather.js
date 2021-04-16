@@ -22,6 +22,7 @@ function findWeather(){
         })
         .then((data)=>
         {   
+
             
             res=data[1]
             res2=data[0]
