@@ -28,8 +28,11 @@ function addDetais(){
         
     })
 
-    
+    var current=new Date();
 
+    var x=String(current)
+    var p=x.split("G")
+    
     let ids=100
     if(count==100)
         ids=100
@@ -47,7 +50,9 @@ function addDetais(){
     ref.child(ids).set({
         id:ids,
         name:uname,
-        email:email
+        email:email,
+        date:p[0]
+        
     });
     document.getElementById("email").value="";
     document.getElementById("name").value="";
