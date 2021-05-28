@@ -35,7 +35,7 @@ getUser(100).
     then(getServiceCost).
     then(console.log)
 
-    getUser(100).
-    then((result)=>getServices(result)).
-    then((res)=>getServiceCost(res)).
-    then((cres)=>console.log(cres))
+    // getUser(100).
+    // then((result)=>getServices(result)).
+    // then((res)=>getServiceCost(res)).
+    // then((cres)=>console.log(cres))

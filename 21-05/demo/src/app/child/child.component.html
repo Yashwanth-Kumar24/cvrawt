@@ -1,0 +1,14 @@
+<p>Your EmpID {{empId}}</p>
+
+<p>Your Name {{empName}}</p>
+
+<input type="text" [(ngModel)]="empId">
+
+<input type="text" [value]="empName" (input)="onSave($event)">
+
+
+
+<h1 [style.color]="color">Yashwanth Kumar</h1>
+
+    
+<button (click)=changecolor()>Hey</button>

@@ -27,10 +27,10 @@ var firebaseConfig = {
 
     var ref=firebase.database().ref().child("User")
 
-    function deleteEmp(){
-        var x=prompt("Enter Emp Id to delete","0")
-        window.open("http://localhost:2025/deleteEmp/x")
-    }
+    // function deleteEmp(){
+    //     var x=prompt("Enter Emp Id to delete","0")
+    //     window.open("http://localhost:2025/deleteEmp/x")
+    // }
 
     app.post("/addEmp",(req,res)=>{
         id=req.body.empid

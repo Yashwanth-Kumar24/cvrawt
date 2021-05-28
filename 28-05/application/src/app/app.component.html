@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<h1 align="center">Student List</h1>
+
+<table border="2" align="center" class="table">
+  <thead>
+    <th>Roll NO</th>
+    <th>Name</th>
+    <th>Branch</th>
+    <th>Email ID</th>
+    <th>Operation</th>  
+  </thead>
+  <tbody>
+    <tr *ngFor="let st of students;let i=index">
+      <td>{{st.rollno}}</td>
+      <td>{{st.name}}</td>
+      <td>{{st.branch}}</td>
+      <td>{{st.emailId}}</td>
+      <td><button (click)="deleteStudent(i)" class="btn btn-danger">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<button (click)="getStudents()" class="btn btn-primary">Fetch all students</button>
+<br><br>
+<input type="checkbox" [(ngModel)]="showMe">Do you want to add student
+
+<br>
+
+<div *ngIf="showMe">
+  <h3>Add Student-Details Entry</h3>
+<br>
+Roll No: <input type="text" [(ngModel)]="roll"><br>
+Name: <input type="text" [(ngModel)]="name"><br>
+Branch: <input type="text" [(ngModel)]="branch"><br>
+Email ID: <input type="text" [(ngModel)]="email"><br>
+<button (click)="addStudent()" class="btn btn-success">Add student</button>
+</div>
