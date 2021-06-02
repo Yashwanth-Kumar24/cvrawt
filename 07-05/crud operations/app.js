@@ -45,7 +45,7 @@ var firebaseConfig = {
     })
 
     app.get("/getUsers",(req,res)=>{
-        
+        res.setHeader('Access-Control-Allow-Origin','*');
         ref.once("value",(snap)=> {
             res.send(snap.val())
         })

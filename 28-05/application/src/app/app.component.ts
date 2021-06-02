@@ -12,7 +12,7 @@ import { StudentService } from './student.service';
 export class AppComponent {
   title = 'application';
 
-  studentService;
+  
   input!:Student
 
   roll!:number
@@ -21,11 +21,12 @@ export class AppComponent {
   email!:String
 
   showMe!:boolean
-  constructor(){
-    this.studentService=new StudentService();
+  constructor(private studentService:StudentService){
+    
   }
 
-  students:Student[]=[]
+  students!:any
+  
   getStudents(){
     this.students=this.studentService.getStudents();
   }

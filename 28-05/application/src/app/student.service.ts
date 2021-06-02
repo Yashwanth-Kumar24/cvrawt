@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Student } from './student';
 
@@ -6,19 +7,20 @@ import { Student } from './student';
 })
 export class StudentService {
 
-  students:Student[]=[
-    {"rollno":1,"name":"Raj","branch":"IT","emailId":"raj@cvr.in"},
-    {"rollno":2,"name":"Ram","branch":"CSE","emailId":"ram@cvr.in"},
-    {"rollno":3,"name":"Sam","branch":"IT","emailId":"sam@cvr.in"},
-    {"rollno":4,"name":"Rose","branch":"ECE","emailId":"rose@cvr.in"},
-    {"rollno":5,"name":"Rajiv","branch":"IT","emailId":"rajiv@cvr.in"},
-    {"rollno":6,"name":"Yash","branch":"EIE","emailId":"yash@cvr.in"},
-  ]
-  constructor() { }
+  students:Student[]=[]
+  constructor(private http:HttpClient) { }
 
   //fetching all students
-  public getStudents(){
-    return this.students;
+  // public getStudents(){
+  //   return this.http.get("https://localhost:2025/getUsers")
+  // }
+  
+  getStudents(){
+    this.http.get("http://localhost:2025/getUsers")
+    .subscribe(data=>{
+      console.log(data);
+      return Object.values(data);
+    })
   }
 
   //Adding new student

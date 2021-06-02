@@ -1,0 +1,13 @@
+<!--<form #cform="ngForm" (ngSubmit)="onSubmit(cform)">
+    Roll No: <input type="text" name="roll" ngModel><br>
+    Name: <input type="text" name="name" ngModel><br>
+    Branch: <input type="text" name="branch" ><br>
+    <button type="submit">Submit</button>
+</form>
+-->
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    Roll No: <input type="text" name="username" formControlName="username" ><br>
+    Name: <input type="text" name="password" formControlName="password" ><br>
+    <button type="submit">Submit</button>
+</form>
