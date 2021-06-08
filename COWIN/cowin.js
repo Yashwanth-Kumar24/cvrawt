@@ -2,11 +2,11 @@ function getSlots(distcode){
     //name,address,min_age_limit,vaccine,district_name, state_name, fee_type, fee,available_capacity_dose2,available_capacity_dose1
     var request=new XMLHttpRequest();
         
-    //console.log("hi")
 
-    
-    
-    var today = new Date();
+    var selectedDate=document.getElementById("Date").value;
+    if(selectedDate==""){
+        alert("Please select a date - Today's slots are displayed")
+        var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1;
   
@@ -18,12 +18,18 @@ function getSlots(distcode){
             mm = '0' + mm;
         }
         var today = dd + '-' + mm + '-' + yyyy;
-        ///console.log(today)
+        document.getElementById("Date").value=yyyy + '-' + mm + '-' + dd
+    }
+    
+    else{
+    var dl=selectedDate.split("-")
+    var today=dl[2]+"-"+dl[1]+"-"+dl[0]
+    }
 
     let url='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id='+distcode+'&date='+today
     
-    var des="<p style='color: orange;font-size: 20px;'> Date : "+today+"<br> <b style='color: red;'>Representation</b><br> <span style='color:pink;'>Pink - Unavailable</span><br>    <span style='color:lightgreen;'>Green - Available</span><br></p>"
-    document.getElementById("description").innerHTML=des;
+    
+    
     //console.log(url)
 
     request.open('GET',url,true);
@@ -32,15 +38,19 @@ function getSlots(distcode){
     document.getElementById("heading").innerHTML=""
     document.getElementById("cowinTable").innerHTML=""
     document.getElementById("count").innerHTML=""
+    document.getElementById("description").innerHTML=""
 
     request.onload=function(){
         var res=JSON.parse(this.response);
-        console.log(res.sessions)
-    
+       // console.log(res.sessions)
+        
+            if(res.sessions.length==0){
+            document.getElementById("count").innerHTML="No Slots available"
+            }
+            else{
+                var des="<p style='color: orange;font-size: 20px;'> Date : "+today+"<br> <b style='color: red;'>Representation</b><br> <span style='color:pink;'>Pink - Unavailable</span><br>    <span style='color:lightgreen;'>Green - Available</span><br></p>"
+                document.getElementById("description").innerHTML=des;
             document.getElementById("heading").innerHTML="Vaccine available slots in "+res.sessions[0].district_name+", "+res.sessions[0].state_name;
-            document.getElementById("count").innerHTML="Total Vaccine centres : "+res.sessions.length;
-            
-       
             let table=document.createElement("table");
             table.cellPadding="15"
             table.align="center";
@@ -82,8 +92,20 @@ function getSlots(distcode){
             dose1.innerHTML="Dose 1";
             dose2.innerHTML="Dose 2";
             res=res.sessions
+            var free=0,paid=0,av=0;
+
             res.forEach((data)=>{
-                let row2=table.insertRow(-1)
+                if(data.fee==0)
+                    free+=1
+                else
+                    paid+=1
+                if(data.available_capacity>0)
+                    av+=1
+            })
+            document.getElementById("count").innerHTML="Paid Vaccine centres : "+paid+"<br>Free Vaccine Centres : "+free+"<br>Available Vaccine Centers : "+av;
+            
+            res.forEach((data)=>{
+                let row2=table.insertRow(-1)    
                 
                 row2.align="center"
                 row2.style.color="maroon"
@@ -120,6 +142,7 @@ function getSlots(distcode){
             });
             tab=document.getElementById("cowinTable")
             tab.append(table);
+        }
     }
 }
 
