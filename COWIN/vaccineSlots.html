@@ -9,45 +9,50 @@
     </head>
     <body >
         <center>
-            <h1><u>VACCINE SLOTS</u></h1><br>
-            <input type="date" id="Date" required>
+            <h1><u>COVID-19 VACCINE SLOTS</u></h1><br>
+            <input type="date" id="Date" class="form-control"  style="width:25%;">
             <h2><i>Select District</i></h2><br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-success" onclick="getSlots(598)" value="Nalgonda">
-                </div>
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-primary" onclick="getSlots(604)" value="Sangareddy">
-                </div>
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-success" onclick="getSlots(588)" value="Kamareddy">
-                </div>
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-primary" onclick="getSlots(581)" value="Hyderabad">
-                </div>
-            </div>
-        </div>
+            
+            <select id="dist" class="form-control"  style="width:25%;" onmousedown="if(this.options.length>8){this.size=8;}" onchange='this.size=0;' onblur="this.size=0;">Select District
+                <option>Adilabad</option>
+                <option>Bhadradri Kothagudem</option>
+                <option>Hyderabad</option>
+                <option>Jagtial</option>
+                <option>Jangaon</option>
+                <option>Jayashankar Bhupalpally</option>
+                <option>Jogulamba Gadwal</option>
+                <option>Kamareddy</option>
+                <option>Karimnagar</option>
+                <option>Khammam</option>
+                <option>Kumuram Bheem</option>
+                <option>Mahabubabad</option>
+                <option>Mahabubnagar</option>
+                <option>Mancherial</option>
+                <option>Medak</option>
+                <option>Medchal</option>
+                <option>Mulugu</option>
+                <option>Nagarkurnool</option>
+                <option>Nalgonda</option>
+                <option>Narayanpet</option>
+                <option>Nirmal</option>
+                <option>Nizamabad</option>
+                <option>Peddapalli</option>
+                <option>Rajanna Sircilla</option>
+                <option>Rangareddy</option>
+                <option>Sangareddy</option>
+                <option>Siddipet</option>
+                <option>Suryapet</option>
+                <option>Vikarabad</option>
+                <option>Wanaparthy</option>
+                <option>Warangal(Rural)</option>
+                <option>Warangal(Urban)</option>
+                <option>Yadadri Bhuvanagiri</option>
+            </select>
         <br>
         <br>
+        <input type="submit"  class="btn btn-success" onclick="getSlots()" value="Fetch Slots Information">
         <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-primary" onclick="getSlots(603)" value="Ranga Reddy">
-                </div>
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-success" onclick="getSlots(611)" value="Yadadri Bhuvanagiri">
-                </div>
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-primary" onclick="getSlots(605)" value="Siddipet">
-                </div>
-                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
-                    <input type="submit"  class="btn btn-success" onclick="getSlots(595)" value="Medak">
-                </div>
-            </div>
-        </div>
-        
+        <br>
         <h3 id="heading" style="color: darkorange;"></h3>
         <b><h4 id="count" style="color:magenta;"></h4></b>
         <div id="description">
