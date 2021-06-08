@@ -105,6 +105,8 @@ function getSlots(distcode){
             document.getElementById("count").innerHTML="Paid Vaccine centres : "+paid+"<br>Free Vaccine Centres : "+free+"<br>Available Vaccine Centers : "+av;
             
             res.forEach((data)=>{
+
+                if(data.available_capacity>0){
                 let row2=table.insertRow(-1)    
                 
                 row2.align="center"
@@ -122,7 +124,7 @@ function getSlots(distcode){
                 center_name2.style.padding="15px"
 
                 center_name2.innerHTML=data.name;
-                address2.innerHTML=data.address;
+                address2.innerHTML=data.address+", "+data.pincode;
                 minAge2.innerHTML=data.min_age_limit
                 vaccine2.innerHTML=data.vaccine
                 feeType2.innerHTML=data.fee_type
@@ -138,7 +140,49 @@ function getSlots(distcode){
                 dose12.innerHTML=data.available_capacity_dose1
                 dose22.innerHTML=data.available_capacity_dose2
                 
-                          
+                }    
+            });
+            tab=document.getElementById("cowinTable")
+            tab.append(table);
+        
+
+            res.forEach((data)=>{
+
+                if(data.available_capacity==0){
+                let row2=table.insertRow(-1)    
+                
+                row2.align="center"
+                row2.style.color="maroon"
+                let center_name2=row2.insertCell(-1)
+                let address2=row2.insertCell(-1)
+                let minAge2=row2.insertCell(-1)
+                let vaccine2=row2.insertCell(-1)
+                let feeType2=row2.insertCell(-1)
+                let fee2=row2.insertCell(-1)
+                let dose12=row2.insertCell(-1)
+                let dose22=row2.insertCell(-1)
+                
+                address2.style.padding="20px"
+                center_name2.style.padding="15px"
+
+                center_name2.innerHTML=data.name;
+                address2.innerHTML=data.address+", "+data.pincode;
+                minAge2.innerHTML=data.min_age_limit
+                vaccine2.innerHTML=data.vaccine
+                feeType2.innerHTML=data.fee_type
+                fee2.innerHTML=data.fee
+                if((data.fee_type)=="Free")
+                    feeType2.style.border="2px solid green"
+                else
+                    feeType2.style.border="2px solid red"
+                if(parseInt(data.available_capacity)>0)
+                    row2.style.backgroundColor="lightgreen"
+                if(parseInt(data.available_capacity)==0)
+                    row2.style.backgroundColor="pink"
+                dose12.innerHTML=data.available_capacity_dose1
+                dose22.innerHTML=data.available_capacity_dose2
+                
+                }    
             });
             tab=document.getElementById("cowinTable")
             tab.append(table);
@@ -147,7 +191,7 @@ function getSlots(distcode){
 }
 
 // fetch=  require('node-fetch');
-// var  url='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=611&date=08-06-2021'
+// var  url=    
 
 // fetch(url)
 // .then((response)=>{
