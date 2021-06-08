@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <title>
+            COWIN Slots API
+        </title>
+        <script src="cowin.js"></script>
+    </head>
+    <body >
+        <center>
+            <h1><u>VACCINE SLOTS</u></h1><br>
+            <h2><i>Select District</i></h2><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-success" onclick="getSlots(598)" value="Nalgonda">
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-primary" onclick="getSlots(604)" value="Sangareddy">
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-success" onclick="getSlots(588)" value="Kamareddy">
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-primary" onclick="getSlots(581)" value="Hyderabad">
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-primary" onclick="getSlots(603)" value="Ranga Reddy">
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-success" onclick="getSlots(611)" value="Yadadri Bhuvanagiri">
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-primary" onclick="getSlots(605)" value="Siddipet">
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-12" style="padding: 10px;">
+                    <input type="submit"  class="btn btn-success" onclick="getSlots(595)" value="Medak">
+                </div>
+            </div>
+        </div>
+        
+        <h3 id="heading" style="color: darkorange;"></h3>
+        <b><h4 id="count" style="color:magenta;"></h4></b>
+        <div id="description">
+        <!-- <p style="color: orange;font-size: 20px;">
+            Date - Today<br>
+            <b style="color: red;">Representation</b><br>
+            <span style="color:blue;">Pink - Unavailable</span><br>
+            <span style="color:pink;">Pink - Unavailable</span><br>
+            <span style="color:pink;">Pink - Unavailable</span><br>
+            <span style="color:lightgreen;">Green - Available</span><br>
+        </p> -->
+        </div>
+        <div class="table-responsive" style="margin: 10px;" >
+            <table id="cowinTable">
+
+            </table>
+        </div>
+    </center>
+    </body>
+</html>

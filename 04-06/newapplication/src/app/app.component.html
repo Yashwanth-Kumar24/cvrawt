@@ -1,0 +1,25 @@
+<label for="userName">User Name</label>
+<input type="text" [(ngModel)]="userName" required>
+
+<div class="form-group">
+  <button type="button" (click)="getRepos()">Get Repos</button>
+</div>
+
+<table class='table' border="1">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Link</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of repos;">
+      <td>{{r.id}}</td>
+      <td>{{r.name | lowercase}}</td>
+      <td>{{r.description}}</td>
+      <td>{{r.html_url}}</td>
+    </tr>
+  </tbody>
+</table>

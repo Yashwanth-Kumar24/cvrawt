@@ -1,0 +1,41 @@
+<div>
+  <div><label>Id</label>
+    <input type="text" [(ngModel)]="Emp.id">
+  </div>
+  <div><label>Name</label>
+    <input type="text" [(ngModel)]="Emp.name">
+  </div>
+  <div><label>Date of birth</label>
+    <input type="text" [(ngModel)]="Emp.dob">
+  </div>
+  <div><label>Salary</label>
+    <input type="text" [(ngModel)]="Emp.salary">
+  </div>
+  <div>
+  <button type="button" (click)="addEmployee()">Add Employee</button>
+</div>
+</div>
+
+
+<div class="form-gro  up">
+  <button type="button" (click)="getEmployee()">Get Employees</button>
+</div>
+
+<table class='table' border="2">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>DOB</td>
+      <td>Salary</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of emp;">
+      <td>{{r.id}}</td>
+      <td>{{r.name}}</td>
+      <td>{{r.dob}}</td>
+      <td>{{r.salary}}</td>
+    </tr>
+  </tbody>
+</table>
