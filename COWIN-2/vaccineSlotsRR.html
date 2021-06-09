@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <meta http-equiv="refresh" content="1000">
+        <title>
+            COWIN Slots API
+        </title>
+        <script src="cowinRR.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+        <script type="text/javascript">
+        (function() {
+        emailjs.init("user_AID85Bh7i6GnSAEOUTKds");
+        })();
+        </script>
+
+    </head>
+    <body onload="getSlots()">
+        <center>
+            <h1><u>COVID-19 VACCINE SLOTS</u></h1><br>
+        
+        <br>
+        <br>
+        <h3 id="heading" style="color: darkorange;"></h3>
+        <b><h4 id="count" style="color:magenta;"></h4></b>
+        <div id="description">
+        
+        </div>
+        <div class="table-responsive" style="margin: 10px;" >
+            <table id="cowinTable">
+
+            </table>
+        </div>
+    </center>
+    </body>
+</html>

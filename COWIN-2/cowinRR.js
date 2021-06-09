@@ -1,58 +1,8 @@
 function getSlots(){
-    //name,address,min_age_limit,vaccine,district_name, state_name, fee_type, fee,available_capacity_dose2,available_capacity_dose1
+    
     var request=new XMLHttpRequest();
 
-    var dist=[{"district_id":582,"district_name":"Adilabad"},
-    {"district_id":583,"district_name":"Bhadradri Kothagudem"},
-    {"district_id":581,"district_name":"Hyderabad"},
-    {"district_id":584,"district_name":"Jagtial"},
-    {"district_id":585,"district_name":"Jangaon"},
-    {"district_id":586,"district_name":"Jayashankar Bhupalpally"},
-    {"district_id":587,"district_name":"Jogulamba Gadwal"},
-    {"district_id":588,"district_name":"Kamareddy"},
-    {"district_id":589,"district_name":"Karimnagar"},
-    {"district_id":590,"district_name":"Khammam"},
-    {"district_id":591,"district_name":"Kumuram Bheem"},
-    {"district_id":592,"district_name":"Mahabubabad"},
-    {"district_id":593,"district_name":"Mahabubnagar"},
-    {"district_id":594,"district_name":"Mancherial"},
-    {"district_id":595,"district_name":"Medak"},
-    {"district_id":596,"district_name":"Medchal"},
-    {"district_id":612,"district_name":"Mulugu"},
-    {"district_id":597,"district_name":"Nagarkurnool"},
-    {"district_id":598,"district_name":"Nalgonda"},
-    {"district_id":613,"district_name":"Narayanpet"},
-    {"district_id":599,"district_name":"Nirmal"},
-    {"district_id":600,"district_name":"Nizamabad"},
-    {"district_id":601,"district_name":"Peddapalli"},
-    {"district_id":602,"district_name":"Rajanna Sircilla"},
-    {"district_id":603,"district_name":"Rangareddy"},
-    {"district_id":604,"district_name":"Sangareddy"},
-    {"district_id":605,"district_name":"Siddipet"},
-    {"district_id":606,"district_name":"Suryapet"},
-    {"district_id":607,"district_name":"Vikarabad"},
-    {"district_id":608,"district_name":"Wanaparthy"},
-    {"district_id":609,"district_name":"Warangal(Rural)"},
-    {"district_id":610,"district_name":"Warangal(Urban)"},
-    {"district_id":611,"district_name":"Yadadri Bhuvanagiri"}
-    ]
-
-    var district=document.getElementById("dist").value;
-    //console.log(district)
-
-    var distcode=""
-    //Fetching dist code for API from selected value
-    dist.forEach((data)=>{
-        if(data.district_name.includes(district))
-             distcode=data.district_id
-    })
-
-    //console.log(district+" "+distcode)
-    //Date
-    var selectedDate=document.getElementById("Date").value;
-    //If not select give todays
-    if(selectedDate==""){
-        alert("Please select a date - Today's slots are displayed")
+    var distcode="603"
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1;
@@ -65,27 +15,10 @@ function getSlots(){
             mm = '0' + mm;
         }
         var today = dd + '-' + mm + '-' + yyyy;
-        document.getElementById("Date").value=yyyy + '-' + mm + '-' + dd
-    }
-    //If selected put proper format and pass to API
-    else{
-    var dl=selectedDate.split("-")
-    var today=dl[2]+"-"+dl[1]+"-"+dl[0]
-    }
-    var today2 = new Date();
-        var hrs = today2.getHours();
-        var mints = today2.getMinutes();
-  
-        var scnds = today2.getSeconds();
-        
-        var time = hrs + ':' + mints + ':' + scnds;
-
+       
     let url='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id='+distcode+'&date='+today
     
     
-    
-    //console.log(url)
-
     request.open('GET',url,true);
     request.send();
 
@@ -102,7 +35,7 @@ function getSlots(){
             document.getElementById("count").innerHTML="No Slots available"
             }
             else{
-                var des="<p style='color: orange;font-size: 20px;'> Date : "+today+"<br> Current Time : "+time+"<br> <b style='color: red;'>Representation</b><br> <span style='color:pink;'>Pink - Unavailable</span><br>    <span style='color:lightgreen;'>Green - Available</span><br></p>"
+                var des="<p style='color: orange;font-size: 20px;'> Date : "+today+"<br> <b style='color: red;'>Representation</b><br> <span style='color:pink;'>Pink - Unavailable</span><br>    <span style='color:lightgreen;'>Green - Available</span><br></p>"
                 document.getElementById("description").innerHTML=des;
             document.getElementById("heading").innerHTML="Vaccine available slots in "+res.sessions[0].district_name+", "+res.sessions[0].state_name;
             let table=document.createElement("table");
@@ -146,8 +79,9 @@ function getSlots(){
             dose1.innerHTML="Dose 1";
             dose2.innerHTML="Dose 2";
             res=res.sessions
-            var free=0,paid=0,av=0;
-
+            var free=0,paid=0,av=0
+            dose1=0,dose2=0
+            var centrenames=""
             res.forEach((data)=>{
                 if(data.fee==0)
                     free+=1
@@ -155,9 +89,20 @@ function getSlots(){
                     paid+=1
                 if(data.available_capacity>0)
                     av+=1
+                if(data.available_capacity>0)
+                    centrenames+=data.name+" ; "
+                if(data.available_capacity_dose1>0)
+                    dose1+=data.available_capacity_dose1
+                if(data.available_capacity_dose2>0)
+                    dose2+=data.available_capacity_dose2
             })
+
             document.getElementById("count").innerHTML="Paid Vaccine centres : "+paid+"<br>Free Vaccine Centres : "+free+"<br>Available Vaccine Centers : "+av;
             
+            //console.log(av,dose1,dose2,centrenames)
+            if(av>0)
+                sendMessage(av,dose1,dose2,centrenames)
+
             res.forEach((data)=>{
 
                 if(data.available_capacity>0){
@@ -244,13 +189,19 @@ function getSlots(){
     }
 }
 
-// fetch=  require('node-fetch');
-// var  url=    
-
-// fetch(url)
-// .then((response)=>{
-//     return response.json()
-// }).then((data)=>
-// {
-//     console.log(data)
-// })
+function sendMessage(av,dose1,dose2,centrenames){
+    var tempParams={
+      from_name:"Hyderabad",
+      to_name:"People",
+      dose1:dose1,
+      dose2:dose2,
+      message:av,
+      centername:centrenames,
+      email:"yashwanthkumar.jannaikode@gmail.com"
+    }
+  
+    emailjs.send('service_1bbmvxu','template_sdx7ulr',tempParams)
+    .then(function(res){
+        console.log("success ",res.status)
+    })
+  }
