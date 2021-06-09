@@ -16,6 +16,14 @@ function getSlots(){
         }
         var today = dd + '-' + mm + '-' + yyyy;
        
+        var today2 = new Date();
+        var hrs = today2.getHours();
+        var mints = today2.getMinutes();
+  
+        var scnds = today2.getSeconds();
+        
+        var time = hrs + ':' + mints + ':' + scnds;
+
     let url='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id='+distcode+'&date='+today
     
     
@@ -35,7 +43,7 @@ function getSlots(){
             document.getElementById("count").innerHTML="No Slots available"
             }
             else{
-                var des="<p style='color: orange;font-size: 20px;'> Date : "+today+"<br> <b style='color: red;'>Representation</b><br> <span style='color:pink;'>Pink - Unavailable</span><br>    <span style='color:lightgreen;'>Green - Available</span><br></p>"
+                var des="<p style='color: orange;font-size: 20px;'> Date : "+today+"<br> Current Time : "+time+"<br> <b style='color: red;'>Representation</b><br> <span style='color:pink;'>Pink - Unavailable</span><br>    <span style='color:lightgreen;'>Green - Available</span><br></p>"
                 document.getElementById("description").innerHTML=des;
             document.getElementById("heading").innerHTML="Vaccine available slots in "+res.sessions[0].district_name+", "+res.sessions[0].state_name;
             let table=document.createElement("table");
