@@ -14,19 +14,23 @@ function getSlots(){
         if (mm < 10) {
             mm = '0' + mm;
         }
-        var today = dd + '-' + mm + '-' + yyyy;
+        
        
         var today2 = new Date();
         var hrs = today2.getHours();
+        
         var mints = today2.getMinutes();
   
         var scnds = today2.getSeconds();
-        
+        if(hrs>18){
+            dd=parseInt(dd)+1
+        }
+        var today = dd + '-' + mm + '-' + yyyy;
         var time = hrs + ':' + mints + ':' + scnds;
 
     let url='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id='+distcode+'&date='+today
     
-    
+    //console.log(url)
     request.open('GET',url,true);
     request.send();
 

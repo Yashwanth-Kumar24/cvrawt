@@ -3,7 +3,7 @@ function sendMessage(){
     from_name:"Hyderabad",
     to_name:"Siddhartha",
     message:"Hello",
-    email:"yashwanthkumar.jannaikode@gmail.com"
+    email:"krishnaprahladm@gmail.com"
   }
 
   emailjs.send('service_1bbmvxu','template_sdx7ulr',tempParams)
