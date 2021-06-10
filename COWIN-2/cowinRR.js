@@ -42,7 +42,7 @@ function getSlots(){
     request.onload=function(){
         var res=JSON.parse(this.response);
        // console.log(res.sessions)
-        
+            var distname=res.sessions[0].district_name
             if(res.sessions.length==0){
             document.getElementById("count").innerHTML="No Slots available"
             }
@@ -93,6 +93,8 @@ function getSlots(){
             res=res.sessions
             var free=0,paid=0,av=0
             dose1=0,dose2=0
+            var vaccinename1=""
+            var vaccinename2=""
             var centrenames=""
             res.forEach((data)=>{
                 if(data.fee==0)
@@ -103,17 +105,25 @@ function getSlots(){
                     av+=1
                 if(data.available_capacity>0)
                     centrenames+=data.name+" ; "
-                if(data.available_capacity_dose1>0)
+                if(data.available_capacity_dose1>0){
                     dose1+=data.available_capacity_dose1
-                if(data.available_capacity_dose2>0)
+                    if(!(vaccinename1.includes(data.vaccine))){
+                        vaccinename1+=data.vaccine+" ; "
+                    }
+                }
+                if(data.available_capacity_dose2>0){
                     dose2+=data.available_capacity_dose2
+                    if(!vaccinename2.includes(data.vaccine)){
+                        vaccinename2+=data.vaccine+" ; "
+                    }
+                }
             })
 
             document.getElementById("count").innerHTML="Paid Vaccine centres : "+paid+"<br>Free Vaccine Centres : "+free+"<br>Available Vaccine Centers : "+av;
             
             //console.log(av,dose1,dose2,centrenames)
             if(av>0)
-                sendMessage(av,dose1,dose2,centrenames)
+                sendMessage(distname,av,dose1,dose2,centrenames,vaccinename1,vaccinename2)
 
             res.forEach((data)=>{
 
@@ -201,13 +211,15 @@ function getSlots(){
     }
 }
 
-function sendMessage(av,dose1,dose2,centrenames){
+function sendMessage(place,av,dose1,dose2,centrenames,vaccinename1,vaccinename2){
     var tempParams={
-      from_name:"Hyderabad",
+      location:place,
       to_name:"People",
       dose1:dose1,
       dose2:dose2,
       message:av,
+      vaccine1:vaccinename1,
+      vaccine2:vaccinename2,
       centername:centrenames,
       email:"yashwanthkumar.jannaikode@gmail.com"
     }
