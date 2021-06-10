@@ -1,8 +1,8 @@
-function getSlots(){
+function getSlots(dc){
     
     var request=new XMLHttpRequest();
 
-    var distcode="603"
+    var distcode=dc
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1;
