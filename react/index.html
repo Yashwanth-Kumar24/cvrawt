@@ -14,14 +14,18 @@
     </head>
     <body >
         
-        <div id="root">
+        <div id="root"></div>
+
             <script type="text/babel">
-                ReactDOM.render(
-                    <h1>Hey there</h1>,
-                    document.getElementById(root)
-                )
+            class App extends React.Component{
+                render(){
+                   return <div><h1>Hey there!{18+11}</h1> //JSX
+                    <p>Ssup Guys</p></div>
+                }
+            }
+
+            ReactDOM.render(<App/>,document.getElementById('root'))
             </script>
-        </div>
     
     </body>
 </html>
